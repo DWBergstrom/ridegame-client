@@ -25,6 +25,7 @@ class Rides extends React.Component {
   }
 
   render() {
+
     let individualRide
     const { rides } = this.state
     const user = this.props.user
@@ -44,12 +45,17 @@ class Rides extends React.Component {
           duration: ''
         }
 
+        const detail_link = {
+          pathname: `/rides/${id}`
+        }
+
         return (
           <div className="ride-div" key={id}>
-            <h1>{name}</h1>
+            <h1><Link to={detail_link} user={user} replace>Ride: {name}</Link></h1>
             <p>{description}</p>
             <p>Distance: {distance}</p>
             <p>Points: {points}</p>
+            <img className="ride-image" src={photo_url}></img>
             <FinishNew user={user} {...finishData}/>
             <br />
           </div>

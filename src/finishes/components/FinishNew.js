@@ -49,7 +49,7 @@ class FinishNew extends React.Component {
 
     return (
       <React.Fragment>
-        <h3>Add to my finished rides</h3>
+        <h3>Add to my finished rides:</h3>
         <form onSubmit={this.createFinish}>
           <label htmlFor="oldpw">Notes</label>
           <input
