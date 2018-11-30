@@ -10,7 +10,10 @@ class FinishNew extends React.Component {
     super(props)
 
     this.state = {
-      created: false
+      created: false,
+      date: '',
+      notes: '',
+      duration: ''
     }
   }
 
@@ -33,7 +36,6 @@ class FinishNew extends React.Component {
     apiCreateFinish(finishData, user)
       .then(handleErrors)
       .then(() => {
-        console.log('success!')
         this.setState({ created: true })
       })
       .catch(() => console.log('error! and history is ', history))
