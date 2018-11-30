@@ -1,7 +1,24 @@
+.user-finishes  {
+  display: flex;
+  flex-direction: column;
+  margin-left: 200px;
+}
+
+.stats-aside {
+  border: 1px solid black;
+  left: 10px;
+  overflow: auto;
+  padding: 10px;
+  position: absolute;
+  top: 10px;
+  width: 200px;
+  z-index: 1;
+}
+
 .finishes-div {
   border: 1px solid black;
-  padding: 10px;
   margin: 10px;
+  padding: 10px;
 }
 
 .date-placeholder::before {
