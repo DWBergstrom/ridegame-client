@@ -13,6 +13,7 @@ import ChangePassword from './auth/components/ChangePassword'
 // ride items
 import Rides from './rides/components/Rides'
 import Finishes from './finishes/components/Finishes'
+import FinishDetail from './finishes/components/FinishDetail'
 
 
 class App extends Component {
@@ -57,7 +58,10 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/rides' render={() => (
             <Rides flash={this.flash} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/finishes' render={() => (
+          <AuthenticatedRoute user={user} exact path='/finishes/:id' render={() => (
+            <FinishDetail flash={this.flash} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/finishes' render={() => (
             <Finishes flash={this.flash} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (

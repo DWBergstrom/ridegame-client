@@ -28,7 +28,6 @@ class Finishes extends React.Component {
   }
 
   changeHandler() {
-    console.log('changeHandler has been called')
     this.componentDidMount()
   }
 
@@ -55,7 +54,7 @@ class Finishes extends React.Component {
         }
         return (
           <div className="finishes-div" key={id}>
-            <h3>Ride: {name}</h3>
+            <h3><Link to={`/finishes/${id}`} replace>Ride: {name}</Link></h3>
             <p>Notes: {notes}</p>
             <p>Date: {date}</p>
             <p>Duration: {duration}</p>

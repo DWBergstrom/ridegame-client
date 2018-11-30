@@ -25,7 +25,6 @@ export const apiCreateFinish = (finish, user) => {
 }
 
 export const apiUpdateFinish = (finish, finishId, user) => {
-  console.log('finish data in apiUpdateFinish is ', finish)
   return fetch(apiUrl + '/finishes/' + `${finishId}`, {
     method: 'PATCH',
     headers: {
