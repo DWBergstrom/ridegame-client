@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import FinishNew from '../../finishes/components/FinishNew'
 import './Rides.scss'
+const config = require('../../config.js')
+const apiUrl = config.apiUrl
 
 
 // Class Component
@@ -17,7 +19,7 @@ class Rides extends React.Component {
   }
 
   async componentDidMount() {
-    const response = await axios.get('http://localhost:4741/rides')
+    const response = await axios.get(`${apiUrl}` + '/rides')
     this.setState({rides: response.data.rides})
 
   }

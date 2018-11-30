@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import './Finishes.scss'
+const config = require('../../config.js')
+const apiUrl = config.apiUrl
 
 class Finishes extends React.Component {
 
@@ -15,9 +18,7 @@ class Finishes extends React.Component {
   async componentDidMount() {
     const token = this.props.user.token
 
-    console.log(token)
-
-    const response = await axios.get('http://localhost:4741/finishes', { headers: { Authorization: `Bearer ${token}` } })
+    const response = await axios.get(`${apiUrl}` + '/finishes', { headers: { Authorization: `Bearer ${token}` } })
     this.setState({finishes: response.data.finishes})
 
   }
@@ -34,13 +35,13 @@ class Finishes extends React.Component {
         const points = finish.ride.points
         const name = finish.ride.name
         return (
-          <React.Fragment key={id}>
+          <div className="finishes-div" key={id}>
             <h3>Ride: {name}</h3>
             <p>Notes: {notes}</p>
             <p>Date: {date}</p>
             <p>Duration: {duration}</p>
             <p>Points: {points}</p>
-          </React.Fragment>
+          </div>
         )
       })
     }

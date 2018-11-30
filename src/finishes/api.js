@@ -1,4 +1,7 @@
-const apiUrl = 'http://localhost:4741'
+// const apiUrl = 'http://localhost:4741'
+
+const config = require('../config.js')
+const apiUrl = config.apiUrl
 
 export const handleErrors = res => {
   if (res.ok) {
@@ -9,7 +12,6 @@ export const handleErrors = res => {
 }
 
 export const apiCreateFinish = (finish, user) => {
-  console.log('finish in apiCreateExample is ', finish)
   return fetch(apiUrl + '/finishes', {
     method: 'POST',
     headers: {
