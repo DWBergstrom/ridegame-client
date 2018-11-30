@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import FinishNew from '../../finishes/components/FinishNew'
+import './Rides.scss'
 
 
 // Class Component
@@ -26,6 +27,7 @@ class Rides extends React.Component {
     let individualRide
     const { rides } = this.state
     const user = this.props.user
+    console.log('this.state in Rides render is ', this.state)
 
     if (rides.length === 0) {
       individualRide = <p>Loading</p>
@@ -33,21 +35,29 @@ class Rides extends React.Component {
       individualRide = rides.map(ride => {
         const { id, name, photo_url, description, distance, points } = ride
 
+        const finishData = {
+          user_id: this.props.user.id,
+          ride_id: id,
+          notes: '',
+          date: '',
+          duration: ''
+        }
+
         return (
-          <React.Fragment key={id}>
+          <div className="ride-div" key={id}>
             <h1>{name}</h1>
             <p>{description}</p>
             <p>Distance: {distance}</p>
             <p>Points: {points}</p>
-            <FinishNew user={user} />
+            <FinishNew user={user} {...finishData}/>
             <br />
-          </React.Fragment>
+          </div>
         )
       })
     }
     return (
       <React.Fragment>
-        <h2 className="leaderboard">Leaderboard</h2>
+        <h2 className="leaderboard-aside">Leaderboard</h2>
         <h1>Rides</h1>
         {individualRide}
       </React.Fragment>

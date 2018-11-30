@@ -21,21 +21,29 @@ class FinishNew extends React.Component {
 
     const { newExample } = this.state
     const { flash, history, user } = this.props
+    const finishData = {
+      user_id: this.props.user_id,
+      ride_id: this.props.ride_id,
+      notes: this.state.notes,
+      date: '2018-11-30',
+      duration: '50'
+    }
 
-    apiCreateFinish(this.state, user)
+    apiCreateFinish(finishData, user)
       .then(handleErrors)
       .then(() => console.log('success!'))
-      .then(() => history.push('/examples'))
+      .then(() => history.push('/finishes'))
       .catch(() => console.log('error!'))
   }
 
   render() {
     console.log('this.state in FinishNew render is ', this.state)
     console.log('this.props in FinishNew is ', this.props)
-    const { notes } = this.state
+    const { notes, duration } = this.state
+
     return (
       <React.Fragment>
-        <h1>Add to my finished rides</h1>
+        <h3>Add to my finished rides</h3>
         <form onSubmit={this.createFinish}>
           <label htmlFor="oldpw">Notes</label>
           <input
@@ -46,7 +54,7 @@ class FinishNew extends React.Component {
             placeholder="New Finish"
             onChange={this.handleChange}
           />
-          <button type="submit">Create Finish</button>
+          <button type="submit">Add ride</button>
         </form>
       </React.Fragment>
     )
