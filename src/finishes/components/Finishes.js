@@ -65,13 +65,11 @@ class Finishes extends React.Component {
           distance: distance
         }
 
-        console.log('type of distance inside loop is ', typeof distance)
+        // recalc totals
         this.totalDistance += distance
         this.totalRides += 1
         this.totalTime += duration
         this.totalPoints += points
-        console.log('totalDistance, totalRides, totalTime, totalPoints in loop is', this.totalDistance, this.totalRides, this.totalTime, this.totalPoints)
-
 
         const detail_link = {
           pathname: `/finishes/${id}`,
