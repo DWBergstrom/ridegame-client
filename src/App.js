@@ -58,9 +58,7 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/rides' render={() => (
             <Rides flash={this.flash} user={user} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/finishes/:id' render={() => (
-            <FinishDetail flash={this.flash} user={user} />
-          )} />
+          <AuthenticatedRoute user={user} exact path='/finishes/:id' component={FinishDetail}/>
           <AuthenticatedRoute user={user} exact path='/finishes' render={() => (
             <Finishes flash={this.flash} user={user} />
           )} />

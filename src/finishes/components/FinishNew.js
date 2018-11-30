@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import { apiCreateFinish, handleErrors } from '../api'
 
@@ -84,4 +84,4 @@ class FinishNew extends React.Component {
 
 }
 
-export default FinishNew
+export default withRouter(FinishNew)

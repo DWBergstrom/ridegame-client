@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import { apiDeleteFinish, handleErrors } from '../api'
 
@@ -19,8 +19,11 @@ class FinishDelete extends React.Component {
     apiDeleteFinish(finishId, user)
       .then(handleErrors)
       .then(() => {
-        console.log('ride successfully deleted')
-        this.props.changeHandler()
+        if (this.props.detail === true) {
+          this.props.history.push('/finishes')
+        } else {
+          this.props.changeHandler()
+        }
       })
       .catch(() => console.log('error deleting ride!'))
 
@@ -39,4 +42,4 @@ class FinishDelete extends React.Component {
 
 }
 
-export default FinishDelete
+export default withRouter(FinishDelete)

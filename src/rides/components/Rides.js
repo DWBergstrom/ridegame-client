@@ -38,6 +38,7 @@ class Rides extends React.Component {
         const finishData = {
           user_id: this.props.user.id,
           ride_id: id,
+          distance: distance,
           notes: '',
           date: '',
           duration: ''

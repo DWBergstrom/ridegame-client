@@ -43,21 +43,28 @@ class Finishes extends React.Component {
         const { id, notes, date, duration } = finish
         const points = finish.ride.points
         const name = finish.ride.name
-        const rideId = finish.ride.id
+        const distance = finish.ride.distance
+        const ride_id = finish.ride.id
         const changeProps = {
           user: this.props.user,
           id: id,
           notes: notes,
           date: date,
           duration: duration,
-          rideId: rideId
+          ride_id: ride_id,
+          distance, distance
+        }
+        const detail_link = {
+          pathname: `/finishes/${id}`,
+          finishParams: {id, name, notes, date, duration, ride_id, points, user, distance}
         }
         return (
           <div className="finishes-div" key={id}>
-            <h3><Link to={`/finishes/${id}`} replace>Ride: {name}</Link></h3>
+            <h3><Link to={detail_link} user={user} replace>Ride: {name}</Link></h3>
             <p>Notes: {notes}</p>
             <p>Date: {date}</p>
             <p>Duration: {duration}</p>
+            <p>Distance: {distance}</p>
             <p>Points: {points}</p>
             <FinishDelete changeHandler={this.changeHandler} {...changeProps}/>
             <br />

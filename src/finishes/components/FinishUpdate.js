@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import { apiUpdateFinish, handleErrors } from '../api'
 
@@ -32,7 +32,7 @@ class FinishUpdate extends React.Component {
     const { flash, user } = this.props
     const finishData = {
       user_id: this.props.user.id,
-      ride_id: this.props.rideId,
+      ride_id: this.props.ride_id,
       notes: this.state.notes,
       date: this.state.date,
       duration: this.state.duration
@@ -43,9 +43,12 @@ class FinishUpdate extends React.Component {
     apiUpdateFinish(finishData, finishId, user)
       .then(handleErrors)
       .then(() => {
-        console.log('ride successfully updated!')
         this.setState({ dateClicked: false })
-        this.props.changeHandler()
+        if (this.props.detail === true) {
+          this.props.history.push('/finishes')
+        } else {
+          this.props.changeHandler()
+        }
       })
       .catch(() => console.log('error updating ride!'))
 
@@ -94,4 +97,4 @@ class FinishUpdate extends React.Component {
 
 }
 
-export default FinishUpdate
+export default withRouter(FinishUpdate)
