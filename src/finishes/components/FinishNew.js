@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import { apiCreateFinish, handleErrors } from '../api'
 
@@ -9,7 +9,9 @@ class FinishNew extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {}
+    this.state = {
+      created: false
+    }
   }
 
   handleChange = event => this.setState({
@@ -19,8 +21,7 @@ class FinishNew extends React.Component {
   createFinish = event => {
     event.preventDefault()
 
-    const { newExample } = this.state
-    const { flash, history, user } = this.props
+    const { flash, user } = this.props
     const finishData = {
       user_id: this.props.user_id,
       ride_id: this.props.ride_id,
@@ -31,14 +32,19 @@ class FinishNew extends React.Component {
 
     apiCreateFinish(finishData, user)
       .then(handleErrors)
-      .then(() => console.log('success!'))
-      .then(() => history.push('/finishes'))
-      .catch(() => console.log('error!', history))
+      .then(() => {
+        console.log('success!')
+        this.setState({ created: true })
+      })
+      .catch(() => console.log('error! and history is ', history))
   }
 
   render() {
     console.log('this.state in FinishNew render is ', this.state)
     console.log('this.props in FinishNew is ', this.props)
+    if (this.state.created === true) {
+      return <Redirect to='/finishes' />
+    }
     const { notes, duration, date } = this.state
 
     return (
