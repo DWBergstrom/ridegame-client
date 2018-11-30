@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import FinishDelete from './FinishDelete'
 import './Finishes.scss'
 const config = require('../../config.js')
 const apiUrl = config.apiUrl
@@ -13,6 +14,8 @@ class Finishes extends React.Component {
     this.state = {
       finishes: []
     }
+
+    this.changeHandler = this.changeHandler.bind(this)
   }
 
   async componentDidMount() {
@@ -23,9 +26,15 @@ class Finishes extends React.Component {
 
   }
 
+  changeHandler() {
+    console.log('changeHandler has been called')
+    this.componentDidMount()
+  }
+
   render() {
     let individualFinish
     const { finishes } = this.state
+    const  user = this.props.user
 
     if (finishes.length === 0) {
       individualFinish = <p>Loading</p>
@@ -34,6 +43,10 @@ class Finishes extends React.Component {
         const { id, notes, date, duration } = finish
         const points = finish.ride.points
         const name = finish.ride.name
+        const deleteProps = {
+          user: this.props.user,
+          id: id
+        }
         return (
           <div className="finishes-div" key={id}>
             <h3>Ride: {name}</h3>
@@ -41,6 +54,7 @@ class Finishes extends React.Component {
             <p>Date: {date}</p>
             <p>Duration: {duration}</p>
             <p>Points: {points}</p>
+            <FinishDelete changeHandler={this.changeHandler} {...deleteProps}/>
           </div>
         )
       })

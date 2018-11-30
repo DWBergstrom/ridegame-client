@@ -23,3 +23,13 @@ export const apiCreateFinish = (finish, user) => {
     })
   })
 }
+
+export const apiDeleteFinish = (finishId, user) => {
+  return fetch(apiUrl + '/finishes/' + `${finishId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization':`Token token=${user.token}`
+    }
+  })
+}

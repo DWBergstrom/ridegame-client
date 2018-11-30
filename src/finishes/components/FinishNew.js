@@ -38,7 +38,7 @@ class FinishNew extends React.Component {
       .then(() => {
         this.setState({ created: true })
       })
-      .catch(() => console.log('error! and history is ', history))
+      .catch(() => console.log('error adding ride!'))
   }
 
   render() {
