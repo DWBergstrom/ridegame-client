@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import FinishNew from '../../finishes/components/FinishNew'
 
 
 // Class Component
@@ -21,9 +22,10 @@ class Rides extends React.Component {
   }
 
   render() {
-
+    console.log('this.props.user in Rides render is ', this.props.user)
     let individualRide
     const { rides } = this.state
+    const user = this.props.user
 
     if (rides.length === 0) {
       individualRide = <p>Loading</p>
@@ -37,6 +39,7 @@ class Rides extends React.Component {
             <p>{description}</p>
             <p>Distance: {distance}</p>
             <p>Points: {points}</p>
+            <FinishNew user={user} />
             <br />
           </React.Fragment>
         )
