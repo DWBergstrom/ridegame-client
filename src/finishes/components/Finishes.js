@@ -46,7 +46,7 @@ class Finishes extends React.Component {
     const  user = this.props.user
 
     if (finishes.length === 0) {
-      individualFinish = <p>Add some rides!</p>
+      individualFinish = <Link to="/rides">Add some rides to your finished stats!</Link>
     } else {
 
       individualFinish = finishes.map(finish => {
