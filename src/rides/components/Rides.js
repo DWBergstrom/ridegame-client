@@ -46,7 +46,8 @@ class Rides extends React.Component {
         }
 
         const detail_link = {
-          pathname: `/rides/${id}`
+          pathname: `/rides/${id}`,
+          rideParams: {id, name, photo_url, description, distance, points, user}
         }
 
         return (
