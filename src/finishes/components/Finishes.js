@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import FinishDelete from './FinishDelete'
+import FinishUpdate from './FinishUpdate'
 import './Finishes.scss'
 const config = require('../../config.js')
 const apiUrl = config.apiUrl
@@ -43,9 +44,14 @@ class Finishes extends React.Component {
         const { id, notes, date, duration } = finish
         const points = finish.ride.points
         const name = finish.ride.name
-        const deleteProps = {
+        const rideId = finish.ride.id
+        const changeProps = {
           user: this.props.user,
-          id: id
+          id: id,
+          notes: notes,
+          date: date,
+          duration: duration,
+          rideId: rideId
         }
         return (
           <div className="finishes-div" key={id}>
@@ -54,7 +60,9 @@ class Finishes extends React.Component {
             <p>Date: {date}</p>
             <p>Duration: {duration}</p>
             <p>Points: {points}</p>
-            <FinishDelete changeHandler={this.changeHandler} {...deleteProps}/>
+            <FinishDelete changeHandler={this.changeHandler} {...changeProps}/>
+            <br />
+            <FinishUpdate changeHandler={this.changeHandler} {...changeProps}/>
           </div>
         )
       })

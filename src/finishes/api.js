@@ -24,6 +24,20 @@ export const apiCreateFinish = (finish, user) => {
   })
 }
 
+export const apiUpdateFinish = (finish, finishId, user) => {
+  console.log('finish data in apiUpdateFinish is ', finish)
+  return fetch(apiUrl + '/finishes/' + `${finishId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization':`Token token=${user.token}`
+    },
+    body: JSON.stringify({
+      finish
+    })
+  })
+}
+
 export const apiDeleteFinish = (finishId, user) => {
   return fetch(apiUrl + '/finishes/' + `${finishId}`, {
     method: 'DELETE',

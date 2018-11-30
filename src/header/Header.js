@@ -5,17 +5,17 @@ import './Header.scss'
 
 const authenticatedOptions = (
   <React.Fragment>
-    <Link to="/rides">Rides</Link>
-    <Link to="/finishes">Finished Rides</Link>
-    <Link to="/change-password">Change Password</Link>
-    <Link to="/sign-out">Sign Out</Link>
+    <Link to="/rides" replace>Rides</Link>
+    <Link to="/finishes" replace>Finished Rides</Link>
+    <Link to="/change-password" replace>Change Password</Link>
+    <Link to="/sign-out" replace>Sign Out</Link>
   </React.Fragment>
 )
 
 const unauthenticatedOptions = (
   <React.Fragment>
-    <Link to="/sign-up">Sign Up</Link>
-    <Link to="/sign-in">Sign In</Link>
+    <Link to="/sign-up" replace>Sign Up</Link>
+    <Link to="/sign-in" replace>Sign In</Link>
   </React.Fragment>
 )
 

@@ -3,3 +3,8 @@
   padding: 10px;
   margin: 10px;
 }
+
+.date-placeholder::before {
+  content: attr(placeholder);
+  width: 100%;
+}
