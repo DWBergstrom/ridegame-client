@@ -4,7 +4,7 @@ import axios from 'axios'
 
 
 // Class Component
-class Movies extends React.Component {
+class Rides extends React.Component {
 
   constructor(props) {
     super(props)
@@ -54,4 +54,4 @@ class Movies extends React.Component {
 
 }
 
-export default Movies
+export default Rides
