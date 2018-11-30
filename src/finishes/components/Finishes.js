@@ -114,7 +114,7 @@ class Finishes extends React.Component {
           <p>Points: {this.totalPoints}</p>
         </div>
         <div className="user-finishes">
-          <h1>My completed rides</h1>
+          <h1>My finished rides</h1>
           {individualFinish}
         </div>
       </React.Fragment>

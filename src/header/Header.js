@@ -19,6 +19,7 @@ const unauthenticatedOptions = (
   </React.Fragment>
 )
 
+
 const alwaysOptions = (
   <React.Fragment>
     {/*<Link to="/">Home</Link>*/}
@@ -27,6 +28,7 @@ const alwaysOptions = (
 
 const Header = ({ user }) => (
   <header className="main-header">
+    <img src="https://image.flaticon.com/icons/svg/1313/1313112.svg" style={{width:'80px', paddingRight:'18px'}}/>
     <h1>BOSRide</h1>
     <nav>
       { user && <span>Welcome, {user.email}</span>}
