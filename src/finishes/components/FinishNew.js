@@ -40,8 +40,6 @@ class FinishNew extends React.Component {
   }
 
   render() {
-    console.log('this.state in FinishNew render is ', this.state)
-    console.log('this.props in FinishNew is ', this.props)
     if (this.state.created === true) {
       return <Redirect to='/finishes' />
     }

@@ -23,11 +23,9 @@ class Rides extends React.Component {
   }
 
   render() {
-    console.log('this.props.user in Rides render is ', this.props.user)
     let individualRide
     const { rides } = this.state
     const user = this.props.user
-    console.log('this.state in Rides render is ', this.state)
 
     if (rides.length === 0) {
       individualRide = <p>Loading</p>
