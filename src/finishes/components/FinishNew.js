@@ -25,21 +25,21 @@ class FinishNew extends React.Component {
       user_id: this.props.user_id,
       ride_id: this.props.ride_id,
       notes: this.state.notes,
-      date: '2018-11-30',
-      duration: '50'
+      date: this.state.date,
+      duration: this.state.duration
     }
 
     apiCreateFinish(finishData, user)
       .then(handleErrors)
       .then(() => console.log('success!'))
       .then(() => history.push('/finishes'))
-      .catch(() => console.log('error!'))
+      .catch(() => console.log('error!', history))
   }
 
   render() {
     console.log('this.state in FinishNew render is ', this.state)
     console.log('this.props in FinishNew is ', this.props)
-    const { notes, duration } = this.state
+    const { notes, duration, date } = this.state
 
     return (
       <React.Fragment>
@@ -52,6 +52,22 @@ class FinishNew extends React.Component {
             value={notes}
             type="text"
             placeholder="New Finish"
+            onChange={this.handleChange}
+          />
+          <input
+            required
+            name="date"
+            value={date}
+            type="date"
+            placeholder="Select Date"
+            onChange={this.handleChange}
+          />
+          <input
+            required
+            name="duration"
+            value={duration}
+            type="text"
+            placeholder="Enter duration in minutes"
             onChange={this.handleChange}
           />
           <button type="submit">Add ride</button>
