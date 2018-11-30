@@ -73,19 +73,20 @@ class Finishes extends React.Component {
 
           const detail_link = {
             pathname: `/finishes/${id}`,
-            finishParams: {id, name, notes, date, duration, ride_id, points, currentUser, distance}
+            finishParams: {id, name, notes, date, duration, ride_id, points, distance, user: this.props.user}
           }
           return (
             <div className="finishes-div" key={id}>
-              <h3><Link to={detail_link} user={currentUser} replace>Ride: {name}</Link></h3>
+              <h3>Ride: {name}</h3>
               <p>Notes: {notes}</p>
               <p>Date: {date}</p>
               <p>Duration: {duration}</p>
               <p>Distance: {distance}</p>
               <p>Points: {points}</p>
-              <FinishDelete changeHandler={this.changeHandler} {...changeProps}/>
+              <Link to={detail_link} >Click here for more options</Link>
+              {/*<FinishDelete changeHandler={this.changeHandler} {...changeProps}/>
               <br />
-              <FinishUpdate changeHandler={this.changeHandler} {...changeProps}/>
+              <FinishUpdate changeHandler={this.changeHandler} {...changeProps}/>*/}
             </div>
           )
         }
@@ -94,7 +95,6 @@ class Finishes extends React.Component {
         individualFinish = <Link to="/rides">Add some rides to your finished stats!</Link>
       }
       this.renderRun += 1
-      console.log(this.renderRun)
       if (this.renderRun > 1) {
         this.totalDistance /= this.renderRun
         this.totalRides /= this.renderRun
