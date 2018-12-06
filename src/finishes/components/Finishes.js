@@ -65,6 +65,9 @@ class Finishes extends React.Component {
           distance: distance
         }
 
+        const unixTs = Math.round((new Date(date)).getTime() / 1000)
+
+
         if (finishUser.id === currentUser.id) {
           this.totalDistance += distance
           this.totalRides += 1
@@ -73,7 +76,7 @@ class Finishes extends React.Component {
 
           const detail_link = {
             pathname: `/finishes/${id}`,
-            finishParams: {id, name, notes, date, duration, ride_id, points, distance, user: this.props.user}
+            finishParams: {id, name, notes, date, unixTs, duration, ride_id, points, distance, user: this.props.user}
           }
           return (
             <div className="finishes-div" key={id}>

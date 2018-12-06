@@ -53,7 +53,6 @@ class Rides extends React.Component {
           rideParams: {id, name, photo_url, description, distance, points, user}
         }
 
-
         return (
           <div className="ride-div" key={id}>
             <h1><Link to={detail_link} user={user} replace>Ride: {name}</Link></h1>
