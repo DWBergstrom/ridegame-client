@@ -22,7 +22,7 @@ class Rides extends React.Component {
   async componentDidMount() {
     const response = await axios.get(`${apiUrl}` + '/rides')
     this.setState({rides: response.data.rides})
-
+    console.log('componentDidMount in rides has run')
   }
 
   render() {
@@ -33,6 +33,7 @@ class Rides extends React.Component {
 
     if (rides.length === 0) {
       individualRide = <p>Loading</p>
+      this.componentDidMount()
     } else {
       individualRide = rides.map(ride => {
         const { id, name, photo_url, description, distance, points } = ride
@@ -57,13 +58,14 @@ class Rides extends React.Component {
             <p>{description}</p>
             <p>Distance: {distance}</p>
             <p>Points: {points}</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39196.08315236001!2d-71.23622179902506!3d42.38258817341337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e3782b52ba7537%3A0x515285872b86c6c8!2sCharles+River+Park+1!5e0!3m2!1sen!2sus!4v1544048434412" style={{border:0, width:'90%', height:450, frameBorder:0}} allowFullScreen></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39196.08315236001!2d-71.23622179902506!3d42.38258817341337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e3782b52ba7537%3A0x515285872b86c6c8!2sCharles+River+Park+1!5e0!3m2!1sen!2sus!4v1544048434412" style={{border:0, width:'100%', height:450, frameBorder:0}} allowFullScreen></iframe>
             <FinishNew user={user} {...finishData}/>
             <br />
           </div>
         )
       })
     }
+    console.log('render in rides has run')
     return (
       <React.Fragment>
         <Leaderboard user={user} component={Leaderboard} />

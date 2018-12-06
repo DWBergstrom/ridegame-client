@@ -80,8 +80,8 @@ class Finishes extends React.Component {
               <h3>Ride: {name}</h3>
               <p>Notes: {notes}</p>
               <p>Date: {date}</p>
-              <p>Duration: {duration}</p>
-              <p>Distance: {distance}</p>
+              <p>Duration: {duration} minutes</p>
+              <p>Distance: {distance} miles</p>
               <p>Points: {points}</p>
               <Link to={detail_link} >Click here for more options</Link>
               {/*<FinishDelete changeHandler={this.changeHandler} {...changeProps}/>
