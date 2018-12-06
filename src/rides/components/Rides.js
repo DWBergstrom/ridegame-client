@@ -58,7 +58,7 @@ class Rides extends React.Component {
           <div className="ride-div" key={id}>
             <h1><Link to={detail_link} user={user} replace>Ride: {name}</Link></h1>
             <p>{description}</p>
-            <p>Distance: {distance}</p>
+            <p>Distance: {distance} miles</p>
             <p>Points: {points}</p>
             <iframe src={photo_url} style={{border:0, width:'100%', height:450, frameBorder:0}} allowFullScreen></iframe>
             <FinishNew user={user} {...finishData}/>
@@ -72,7 +72,7 @@ class Rides extends React.Component {
       <React.Fragment>
         <Leaderboard user={user} component={Leaderboard} />
         <div className="ride-container">
-          <h1>Rides</h1>
+          <h1>Available Rides</h1>
           {individualRide}
         </div>
       </React.Fragment>

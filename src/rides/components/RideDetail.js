@@ -25,9 +25,9 @@ class RideDetail extends React.Component {
         <h2>Ride Detail</h2>
         <h3> Name: {name} </h3>
         <p>{description}</p>
-        <p>Distance: {distance}</p>
+        <p>Distance: {distance} miles</p>
         <p>Points: {points}</p>
-        <img className="ride-image" src={photo_url}></img>
+        <iframe src={photo_url} style={{border:0, width:'100%', height:450, frameBorder:0}} allowFullScreen></iframe>
         <FinishNew user={user} {...finishData}/>
       </div>
     )

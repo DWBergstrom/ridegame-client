@@ -3,8 +3,10 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import FinishDelete from './FinishDelete'
 import FinishUpdate from './FinishUpdate'
+import './Finishes.scss'
 const config = require('../../config.js')
 const apiUrl = config.apiUrl
+
 
 
 class FinishDetail extends React.Component {
@@ -33,7 +35,7 @@ class FinishDetail extends React.Component {
       detail
     }
     return (
-      <div>
+      <div className="user-finishes, finishes-div">
         <h1>Details for Finished Ride</h1>
         <h3>Ride: {name}</h3>
         <p>Notes: {notes}</p>

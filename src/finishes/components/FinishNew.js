@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link, Redirect, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import { apiCreateFinish, handleErrors } from '../api'
-
+import './Finishes.scss'
 
 class FinishNew extends React.Component {
 
@@ -59,6 +59,7 @@ class FinishNew extends React.Component {
             type="text"
             placeholder="New Finish"
             onChange={this.handleChange}
+            className="form-style"
           />
           <input
             required
@@ -67,6 +68,7 @@ class FinishNew extends React.Component {
             type="date"
             placeholder="Select Date"
             onChange={this.handleChange}
+            className="form-style"
           />
           <input
             required
@@ -75,8 +77,9 @@ class FinishNew extends React.Component {
             type="text"
             placeholder="Enter duration in minutes"
             onChange={this.handleChange}
+            className="form-style"
           />
-          <button type="submit">Add ride</button>
+          <button type="submit" className="form-style, btn-primary">Add ride</button>
         </form>
       </React.Fragment>
     )

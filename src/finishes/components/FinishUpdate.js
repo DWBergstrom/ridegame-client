@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import { apiUpdateFinish, handleErrors } from '../api'
+import './Finishes.scss'
 
 class FinishUpdate extends React.Component {
 
@@ -70,6 +71,7 @@ class FinishUpdate extends React.Component {
             type="text"
             placeholder={this.props.notes}
             onChange={this.handleChange}
+            className="form-style"
           />
           <input
             required
@@ -88,8 +90,9 @@ class FinishUpdate extends React.Component {
             type="text"
             placeholder={this.props.duration}
             onChange={this.handleChange}
+            className="form-style"
           />
-          <button type="submit">Update ride</button>
+          <button type="submit" className="btn-primary">Update ride</button>
         </form>
       </div>
     )

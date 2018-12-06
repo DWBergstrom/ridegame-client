@@ -35,7 +35,7 @@ class FinishDelete extends React.Component {
     return (
       <div>
         <form onSubmit={this.deleteFinish}>
-          <button type="submit">Remove ride</button>
+          <button type="submit" className="btn-danger">Remove ride</button>
         </form>
       </div>
     )
