@@ -86,10 +86,7 @@ class Finishes extends React.Component {
               <p>Duration: {duration} minutes</p>
               <p>Distance: {distance} miles</p>
               <p>Points: {points}</p>
-              <Link to={detail_link} >Click here for more options</Link>
-              {/*<FinishDelete changeHandler={this.changeHandler} {...changeProps}/>
-              <br />
-              <FinishUpdate changeHandler={this.changeHandler} {...changeProps}/>*/}
+              <Link to={detail_link} className="finish-detail-link">Click here for more options</Link>
             </div>
           )
         }
@@ -117,7 +114,8 @@ class Finishes extends React.Component {
           <p>Points: {this.totalPoints}</p>
         </div>
         <div className="user-finishes">
-          <h1>My finished rides</h1>
+          <h1>My finished rides <img src="https://image.flaticon.com/icons/svg/94/94203.svg" height="50px"/></h1>
+
           {individualFinish}
         </div>
       </React.Fragment>

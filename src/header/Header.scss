@@ -11,13 +11,16 @@ body {
   height: 100px;
   padding: 0 20px;
   background: #D5F1C9;
-  // background: linear-gradient(to right, #95ed82, white);
 
   a,
   span {
     font-size: 1.2em;
     margin: 0 15px;
   }
+}
+
+.site-banner {
+  font-weight: bolder;
 }
 
 .main-header > nav {
