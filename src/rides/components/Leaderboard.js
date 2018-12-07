@@ -12,14 +12,15 @@ class Leaderboard extends React.Component {
     super(props)
 
     this.state = {
-      finishes: []
+      finishes: [],
+      renderPlease: 0
     }
 
     this.users = {
 
     }
 
-    this.componentRun = 0
+    this.renderRun = 0
 
   }
 
@@ -28,7 +29,6 @@ class Leaderboard extends React.Component {
 
     const response = await axios.get(`${apiUrl}` + '/finishes', { headers: { Authorization: `Bearer ${token}` } })
     this.setState({finishes: response.data.finishes})
-
     const finishes = this.state.finishes
 
     finishes.forEach(finish => {
@@ -57,10 +57,14 @@ class Leaderboard extends React.Component {
     const sortedUsersObject = _.fromPairs(sortedUsersArray)
     this.users = sortedUsersObject
 
+    this.setState({renderPlease: Math.random()})
+
   }
 
 
   render () {
+
+
 
     let leaderboardUser = ''
     let leaderboardPoints = ''
@@ -80,9 +84,11 @@ class Leaderboard extends React.Component {
 
     leaderboardPoints = userPointsArray.map(point => {
       return (
-        <p key={point}>{point}</p>
+        <p key={Math.random()}>{point}</p>
       )
     })
+
+
 
     return (
       <div className="leaderboard-aside">
