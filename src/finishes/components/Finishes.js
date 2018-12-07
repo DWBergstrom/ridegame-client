@@ -14,7 +14,8 @@ class Finishes extends React.Component {
     super(props)
 
     this.state = {
-      finishes: []
+      finishes: [],
+      flashMessage: ''
     }
 
     // declare variables for stats aside
@@ -31,8 +32,14 @@ class Finishes extends React.Component {
   async componentDidMount() {
     const token = this.props.user.token
 
-    const response = await axios.get(`${apiUrl}` + '/finishes', { headers: { Authorization: `Bearer ${token}` } })
-    this.setState({finishes: response.data.finishes})
+    try {
+      const response = await axios.get(`${apiUrl}` + '/finishes', { headers: { Authorization: `Bearer ${token}` } })
+      this.setState({finishes: response.data.finishes})
+    }
+    catch(err) {
+      this.setState({flashMessage: <p>There may be a network issue...try clicking My Finished Rides again</p>})
+    }
+
   }
 
   changeHandler() {
@@ -43,6 +50,7 @@ class Finishes extends React.Component {
     let individualFinish
     const { finishes } = this.state
     const  currentUser = this.props.user
+    const flash = this.props.flash
 
     if (finishes.length === 0) {
       individualFinish = <Link to="/rides">Add some rides to your finished stats!</Link>
@@ -76,7 +84,7 @@ class Finishes extends React.Component {
 
           const detail_link = {
             pathname: `/finishes/${id}`,
-            finishParams: {id, name, notes, date, unixTs, duration, ride_id, points, distance, user: this.props.user}
+            finishParams: {id, name, notes, date, unixTs, duration, ride_id, points, distance, user: this.props.user, flash}
           }
           return (
             <div className="finishes-div" key={id}>
@@ -113,7 +121,8 @@ class Finishes extends React.Component {
           <p>Rides: {this.totalRides}</p>
           <p>Points: {this.totalPoints}</p>
         </div>
-        <h1>My finished rides <img src="https://image.flaticon.com/icons/svg/94/94203.svg" height="50px"/></h1>
+        <h1>My finished rides<img src="https://image.flaticon.com/icons/svg/94/94203.svg" height="50px"/></h1>
+        {this.state.flashMessage}
         <div className="user-finishes">
           {individualFinish}
         </div>

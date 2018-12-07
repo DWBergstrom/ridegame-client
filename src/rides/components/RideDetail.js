@@ -10,15 +10,15 @@ class RideDetail extends React.Component {
 
 
   render () {
-    console.log('this.props in ride detail is ', this.props)
-    const { id, name, photo_url, description, distance, points, user } = this.props.location.rideParams
+    const { id, name, photo_url, description, distance, points, user, flash } = this.props.location.rideParams
     const finishData = {
       user_id: user.id,
       ride_id: id,
       distance: distance,
       notes: '',
       date: '',
-      duration: ''
+      duration: '',
+      flash
     }
     return (
       <div className="ride-div">

@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import { apiUpdateFinish, handleErrors } from '../api'
+import messages from '../messages'
 import './Finishes.scss'
+
 
 class FinishUpdate extends React.Component {
 
@@ -43,6 +45,7 @@ class FinishUpdate extends React.Component {
 
     apiUpdateFinish(finishData, finishId, user)
       .then(handleErrors)
+      .then(() => flash(messages.updateFinishSuccess, 'flash-success'))
       .then(() => {
         this.setState({ dateClicked: false })
         if (this.props.detail === true) {
@@ -51,7 +54,7 @@ class FinishUpdate extends React.Component {
           this.props.changeHandler()
         }
       })
-      .catch(() => console.log('error updating ride!'))
+      .catch(() => flash(messages.updateFinishFailure, 'flash-error'))
 
   }
 

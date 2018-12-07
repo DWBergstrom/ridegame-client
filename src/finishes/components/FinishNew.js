@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link, Redirect, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import { apiCreateFinish, handleErrors } from '../api'
+import messages from '../messages'
 import './Finishes.scss'
 
 class FinishNew extends React.Component {
@@ -38,7 +39,8 @@ class FinishNew extends React.Component {
       .then(() => {
         this.setState({ created: true })
       })
-      .catch(() => console.log('error adding ride!'))
+      .then(() => flash(messages.addFinishSuccess, 'flash-success'))
+      .catch(() => flash(messages.addFinishFailure, 'flash-error'))
   }
 
   render() {

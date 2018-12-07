@@ -20,22 +20,29 @@ class FinishDetail extends React.Component {
       detail: true,
       unixTs: '',
       weather: '',
-      weatherSummary: ''
+      weatherSummary: '',
+      flashMessage: ''
     }
 
   }
 
   async componentDidMount() {
-    const response = await axios.get(`${proxyUrl}` + 'https://api.darksky.net/forecast/5002c77972384623b3d6ac4853cbabfb/' + '42,-71,' + `${this.props.location.finishParams.unixTs}`)
-    this.setState({weather: response.data})
-    const weatherSummary = this.state.weather.hourly.summary
-    this.setState({weatherSummary:weatherSummary})
+
+    try {
+      const response = await axios.get(`${proxyUrl}` + 'https://api.darksky.net/forecast/5002c77972384623b3d6ac4853cbabfb/' + '42,-71,' + `${this.props.location.finishParams.unixTs}`)
+      this.setState({weather: response.data})
+      const weatherSummary = this.state.weather.hourly.summary
+      this.setState({weatherSummary:weatherSummary})
+    }
+    catch(err) {
+      this.setState({flashMessage: <p>Having trouble retrieving weather data...There may be a network issue.</p>})
+    }
 
   }
 
   render() {
     const detail = this.state.detail
-    const { name, notes, date, duration, points, user, id, ride_id, distance, unixTs } = this.props.location.finishParams
+    const { name, notes, date, duration, points, user, id, ride_id, distance, unixTs, flash } = this.props.location.finishParams
     const changeProps = {
       name,
       user,
@@ -45,7 +52,8 @@ class FinishDetail extends React.Component {
       duration,
       ride_id,
       distance,
-      detail
+      detail,
+      flash
     }
 
 
@@ -61,7 +69,7 @@ class FinishDetail extends React.Component {
         <p>Points: {points}</p>
         <div className="weather-wrapper">
           <h4>Weather on this day was: </h4>
-          <p>&nbsp; {this.state.weatherSummary}</p>
+          <p>&nbsp;&nbsp; {this.state.flashMessage} <span className="weather-span">{this.state.weatherSummary}</span></p>
           <p className="weather-link">Weather data provided by <a href="https://darksky.net/dev/docs#time-machine-request" target="_blank" rel="noopener noreferrer">Dark Sky API</a></p>
         </div>
         <FinishDelete {...changeProps}/>

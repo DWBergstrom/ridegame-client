@@ -4,6 +4,7 @@ import axios from 'axios'
 import FinishNew from '../../finishes/components/FinishNew'
 import Leaderboard from './Leaderboard'
 import './Rides.scss'
+import messages from '../messages.js'
 const config = require('../../config.js')
 const apiUrl = config.apiUrl
 
@@ -15,23 +16,28 @@ class Rides extends React.Component {
     super(props)
 
     this.state = {
-      rides: []
+      rides: [],
+      flashMessage: ''
     }
   }
 
   async componentDidMount() {
-    const response = await axios.get(`${apiUrl}` + '/rides')
-    this.setState({rides: response.data.rides})
+    try {
+      const response = await axios.get(`${apiUrl}` + '/rides')
+      this.setState({rides: response.data.rides})
+    }
+    catch(err) {
+      this.setState({flashMessage: <p>There may be a network issue...try clicking Rides again</p>})
+    }
   }
 
   render() {
-
     let individualRide
     const { rides } = this.state
-    const user = this.props.user
+    const { flash, user } = this.props
 
     if (rides.length === 0) {
-      individualRide = <p>Loading</p>
+      individualRide = <p>Looking for rides...</p>
       this.componentDidMount()
     } else {
       individualRide = rides.map(ride => {
@@ -44,12 +50,13 @@ class Rides extends React.Component {
           distance: distance,
           notes: '',
           date: '',
-          duration: ''
+          duration: '',
+          flash
         }
 
         const detail_link = {
           pathname: `/rides/${id}`,
-          rideParams: {id, name, photo_url, description, distance, points, user}
+          rideParams: {id, name, photo_url, description, distance, points, user, flash}
         }
 
         return (
@@ -72,6 +79,7 @@ class Rides extends React.Component {
         <h1>Available Rides <img src="https://image.flaticon.com/icons/svg/130/130066.svg" height="50px"/></h1>
         <div className="ride-container">
           {individualRide}
+          {this.state.flashMessage}
         </div>
       </React.Fragment>
     )

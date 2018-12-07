@@ -13,7 +13,8 @@ class Leaderboard extends React.Component {
 
     this.state = {
       finishes: [],
-      renderPlease: 0
+      renderPlease: 0,
+      flashMessage: ''
     }
 
     this.users = {
@@ -27,8 +28,14 @@ class Leaderboard extends React.Component {
   async componentWillMount() {
     const token = this.props.user.token
 
-    const response = await axios.get(`${apiUrl}` + '/finishes', { headers: { Authorization: `Bearer ${token}` } })
-    this.setState({finishes: response.data.finishes})
+    try {
+      const response = await axios.get(`${apiUrl}` + '/finishes', { headers: { Authorization: `Bearer ${token}` } })
+      this.setState({finishes: response.data.finishes})
+    }
+    catch(err) {
+      this.setState({flashMessage: <p>There may be a network issue...try clicking Rides again</p>})
+    }
+
     const finishes = this.state.finishes
 
     finishes.forEach(finish => {
@@ -97,6 +104,7 @@ class Leaderboard extends React.Component {
           <div>
             <h3>User</h3>
             {leaderboardUser}
+            {this.state.flashMessage}
           </div>
           <div className="leader-points">
             <h3>Points</h3>
