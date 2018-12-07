@@ -13,7 +13,6 @@ class FinishDelete extends React.Component {
 
   deleteFinish = event => {
     event.preventDefault()
-    console.log('this.props in FinishDelete is ', this.props)
     const user = this.props.user
     const finishId = this.props.id
 
