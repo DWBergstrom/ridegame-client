@@ -113,9 +113,8 @@ class Finishes extends React.Component {
           <p>Rides: {this.totalRides}</p>
           <p>Points: {this.totalPoints}</p>
         </div>
+        <h1>My finished rides <img src="https://image.flaticon.com/icons/svg/94/94203.svg" height="50px"/></h1>
         <div className="user-finishes">
-          <h1>My finished rides <img src="https://image.flaticon.com/icons/svg/94/94203.svg" height="50px"/></h1>
-
           {individualFinish}
         </div>
       </React.Fragment>

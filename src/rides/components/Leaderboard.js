@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './Rides.scss'
+const _ = require('lodash')
 const config = require('../../config.js')
 const apiUrl = config.apiUrl
 
@@ -18,9 +19,11 @@ class Leaderboard extends React.Component {
 
     }
 
+    this.componentRun = 0
+
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
     const token = this.props.user.token
 
     const response = await axios.get(`${apiUrl}` + '/finishes', { headers: { Authorization: `Bearer ${token}` } })
@@ -40,7 +43,19 @@ class Leaderboard extends React.Component {
         }
       }
     })
-    console.log('componentDidMount has run')
+    const userObject = this.users
+
+    const sortedUsersArray = []
+    for (const user in userObject) {
+      sortedUsersArray.push([user, userObject[user]])
+    }
+
+    sortedUsersArray.sort(function(a, b) {
+      return b[1] - a[1]
+    })
+
+    const sortedUsersObject = _.fromPairs(sortedUsersArray)
+    this.users = sortedUsersObject
 
   }
 
@@ -56,10 +71,6 @@ class Leaderboard extends React.Component {
       userPointsArray.push(this.users[email])
     }
 
-    console.log('userEmailArray is ', userEmailArray)
-    console.log('userPointsArray is ', userPointsArray)
-
-
     leaderboardUser = userEmailArray.map(user => {
 
       return (
@@ -67,10 +78,9 @@ class Leaderboard extends React.Component {
       )
     })
 
-    leaderboardPoints = userPointsArray.map(user => {
-
+    leaderboardPoints = userPointsArray.map(point => {
       return (
-        <p key={user}>{user}</p>
+        <p key={point}>{point}</p>
       )
     })
 
@@ -79,11 +89,11 @@ class Leaderboard extends React.Component {
         <h1>Leaderboard</h1>
         <div className="leader-container">
           <div>
-            User
+            <h3>User</h3>
             {leaderboardUser}
           </div>
-          <div>
-            Points
+          <div className="leader-points">
+            <h3>Points</h3>
             {leaderboardPoints}
           </div>
         </div>

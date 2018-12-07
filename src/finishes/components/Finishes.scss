@@ -5,7 +5,8 @@ body {
 
 .user-finishes  {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin-left: 200px;
 }
 
@@ -18,11 +19,26 @@ body {
   position: absolute;
   top: 68px;
   width: 200px;
+  margin-right: 40px;
   z-index: 1;
   background: #2c3e50;
 }
 
 .finishes-div {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  border: 1px solid black;
+  color: white;
+  background: #2c3e50;
+  margin: 10px;
+  padding: 10px;
+  margin-left: 50;
+}
+
+.finishes-detail-div {
+  display: flex;
+  flex-direction: column;
   border: 1px solid black;
   color: white;
   background: #2c3e50;
@@ -39,7 +55,7 @@ body {
 }
 
 a:hover {
-  background-color: lightgreen;
+  background-color: #4EB451;
 }
 
 a:focus {
@@ -60,4 +76,14 @@ a:focus {
   margin-bottom: 10px;
   background: #bdc3c7;
   color: black;
+}
+
+.container {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.weather-link {
+  font-weight: lighter;
+  font-size: .5em;
 }

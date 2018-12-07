@@ -22,7 +22,6 @@ class Rides extends React.Component {
   async componentDidMount() {
     const response = await axios.get(`${apiUrl}` + '/rides')
     this.setState({rides: response.data.rides})
-    console.log('componentDidMount in rides has run')
   }
 
   render() {
@@ -66,12 +65,12 @@ class Rides extends React.Component {
         )
       })
     }
-    console.log('render in rides has run')
+
     return (
       <React.Fragment>
         <Leaderboard user={user} component={Leaderboard} />
+        <h1>Available Rides <img src="https://image.flaticon.com/icons/svg/130/130066.svg" height="50px"/></h1>
         <div className="ride-container">
-          <h1>Available Rides</h1>
           {individualRide}
         </div>
       </React.Fragment>

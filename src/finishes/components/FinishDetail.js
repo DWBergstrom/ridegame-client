@@ -51,7 +51,7 @@ class FinishDetail extends React.Component {
 
 
     return (
-      <div className="user-finishes, finishes-div">
+      <div className="user-finishes, finishes-detail-div">
         <h1>Details for Finished Ride</h1>
         <h3>Ride: {name}</h3>
         <p>Notes: {notes}</p>
@@ -62,6 +62,7 @@ class FinishDetail extends React.Component {
         <div className="weather-wrapper">
           <h4>Weather on this day was: </h4>
           <p>&nbsp; {this.state.weatherSummary}</p>
+          <p className="weather-link">Weather data provided by <a href="https://darksky.net/dev/docs#time-machine-request" target="_blank" rel="noopener noreferrer">Dark Sky API</a></p>
         </div>
         <FinishDelete {...changeProps}/>
         <br />

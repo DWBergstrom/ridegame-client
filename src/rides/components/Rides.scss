@@ -29,7 +29,7 @@ a:focus {
   border: 1px solid black;
   padding: 10px;
   margin: 10px;
-  margin-left: 0;
+  margin-left: 50px;
   background: #2c3e50;
   color: white;
 }
@@ -45,7 +45,7 @@ a:focus {
   overflow: auto;
   padding: 10px;
   position: absolute;
-  top: 54px;
+  top: 60px;
   width: 250px;
   z-index: 1;
   background: #2c3e50;
@@ -55,6 +55,10 @@ a:focus {
   display: flex;
   flex-direction: row;
   padding: 10px;
+}
+
+.leader-points {
+  margin-left: 10px;
 }
 
 .ride-image {
