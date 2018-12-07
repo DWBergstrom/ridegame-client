@@ -1,97 +1,147 @@
-[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# react-auth-template
+# BOSRide Client
 
-A front-end framework template for starting projects with a recent version of
-either the [Rails API Template](https://git.generalassemb.ly/ga-wdi-boston/rails-api-template)
-or the [Express API Template](https://git.generalassemb.ly/ga-wdi-boston/express-api-template).
+## What is BOSRide?
+BOSRide is all about getting you out for some exercise! Please sign up, then go ahead and choose one of the available rides after you have completed it, and it will be added to your Finished Rides. Add a quick note about how the ride went. You will be placed on a leaderboard with other users to see how you are doing! Feel free to update your finished ride details from the -more options- link on any of your finished rides.
 
-## Installation
+It is a React-based front-end which communicates with a Rails API.
 
-1. [Download](../../archive/master.zip) this template.
-1. Unzip and rename the template directory (`unzip ~/Downloads/ember-auth-template-master.zip`).
-1. Move into the new project and `git init`.
-1. Empty [`README.md`](README.md) and fill with your own content.
-1. Replace `ga-wdi-boston.react-auth-template` in `package.json` with your
-   projects name.
-1. Replace the `"homepage"` field in `package.json` with your (public) Github
-   account name and repository name.
-1. Install dependencies with `npm install`.
-1. `git add` and `git commit` your changes.
-1. Run the development server with `npm start`.
+## Links to repos, front-end, and API:
+### Front-end:
+#### App:
+https://dwbergstrom.github.io/ridegame-client/#/
+#### Repo:
+https://github.com/DWBergstrom/ridegame-client
 
-## About
+### API:
+#### App:
+https://ridegame-api.herokuapp.com/
+#### Repo:
+https://github.com/DWBergstrom/ridegame-api
 
-This template is derived from GA Boston's [react-template](https://git.generalassemb.ly/ga-wdi-boston/react-template).
-Most of the development dependencies, such as linters, SCSS compiler, Webpack
-config, NPM scripts, etc in this repo come from there.
 
-It includes all the components and routes needed to sign up, sign in, change
-passwords, and sign out of an API built with either template linked above, with
-no need for modification.
+## Technologies used:
+#### Front-end:
++ React
++ React Router
++ JavaScript
++ axios
++ lodash
++ SCSS
++ npm
++ Webpack
 
-**NOTE**: You should customize the included components to suit you app! They're
-provided as a guide and a bare minimum of functionality and style. Consider
-changing the provided SCSS styles, modifying the auth code, improving the flash
-messages, etc.
+#### Third Party API:
++ Dark Sky weather API
 
-## Structure
+##### Deployed on:
++ Github pages
 
-Currently, the top-level `App` component stores the currently authenticated
-user in state, as well as data related to the flash messages. `App` renders the
-`Header` component, and a list of routes, each of which render a component from
-`src/auth/components`. The `auth` directory has two non-component files, `api`
-and `messages`, which contain all the needed `fetch` calls, and messages to
-display when API calls succeed or fail, respectively.
 
-We recommend following this pattern in your app. For instance, if you are making
-an app that keeps track of books, you might want a `books` directory next to
-`auth`, which contains its own `api` and `messages` files, as well as a
-`components` directory.
+#### API:
++ Ruby on Rails
++ PostgreSQL
 
-## Features
+##### Deployed on:
++ Heroku
 
-### `<AuthenticatedRoute />`
+## Planning and Process
+I went through several project ideas before landing on this concept.  One challenge with the other project ideas was creating manageable resource relationships -- which this app does have.  In particular, there are three resources:  a user, rides, and finishes.  A user has many rides through finishes.
 
-This template contains a handy component for creating routes that require a
-user to be authenticated before visiting. This component lives in
-`src/auth/components/AuthenticatedRoute.js` and is already required in `App`.
-It's a thin wrapper around React Router's `<Route />` component. The only
-difference is that it expects a prop called `user`, and if that prop is falsy,
-it will render a `<Redirect />` that takes the user to `/`. **If you want to use
-it, you must pass it the currently authenticated as a prop!**
+I also had planned for the features of this project to be "to-do" items on my second project, so it was nice to revisit some of those ideas with more knowledge, and to expand on the theme.
 
-It supports both the `component=` and `render=` attributes, but like `<Route />`
-it will not forward props to the component if you use `component=`.
+Lastly, I wanted to add a third party API of some kind, an decided upon the Dark Sky weather API due to its great documentation.
 
-### Flash Messages
 
-The `App` component has a rudimentary version of flash messages. To use it,
-pass `this.flash` into a subcomponent of `App` as a prop and call it from there.
-It expects two arguments: a message to display, and a message type, which is one
-of `'flash-success'`, `'flash-warning'`, and `'flash-error'` which make the
-message green, yellow, and red, respectively. You must pass one of these types.
-You can add more types by adding more CSS rules in `App.scss`.
+## Wireframes and entity relationship diagram:
+#### Models and ERD
 
-In the auth components, flash messages are used in conjunction with the
- `auth/messages` file to select from a list of predefined success/failure
- messages. To undertand how to do this, look at the definition of `flash` in
- `App.js`, the `signUp` method in `auth/components/SignUp.js`, and the
- `auth/messages.js` file.
+Models/Attributes:
 
- To change the duration of the message, replace `2000` with a value of your
- choice (in milliseconds) in the `flash` method definition in `App.js`.
+Ride:
+name:string photo_url:string description:string distance:integer points:integer
+Rides are "static" in that they will be seeded to the database - not intended to be added by the user
 
- ### `src/apiConfig.js`
+Finish:
+user:references ride:references notes:string date:date duration:integer
 
- Just like in
-[browser-template](https://git.generalassemb.ly/ga-wdi-boston/browser-template),
-this file will determine whether you're in a production or development
-environment and choose an API URL accordingly. Don't forget to replace the
-`production` URL with your deployed API's URL.
+User:
+email:string
 
-## [License](LICENSE)
+ERD:
+User has many rides through finishes
+ERD:
+<img src="src/images/erd.jpg"/>
 
-1.  All content is licensed under a CC­BY­NC­SA 4.0 license.
-1.  All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
+Client Wireframes:
+<img src="src/images/wireframe1.jpg" />
+<img src="src/images/wireframe2.jpg" />
+
+Final product:
+<img src="src/images/frontend.png" />
+
+### User stories
+As a user, I can:
+For auth:
+
+- sign up, sign in, change password, and sign out
+
+For main app functionality:
+
+- click "completed" on a featured ride to add it to my finished rides
+- remove a finished ride
+- update the notes on a finished ride
+- view all my finished rides and stats
+- view my position on a leaderboard
+
+React components:
+
+- Ride
+- Rides
+- Finish
+- Finishes
+- Leaderboard
+
+React routes:
+
+- /rides
+- /rides/:id
+- /finishes
+- /finishes/:id
+
+Backend routes:
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/sign-up`             | `users#signup`    |
+| POST   | `/sign-in`             | `users#signin`    |
+| DELETE | `/sign-out`            | `users#signout`   |
+| PATCH  | `/change-password`     | `users#changepw`  |
+| GET    | `/rides`               | `rides#index`     |
+| POST   | `/finishes`               | `finishes#create`    |
+| GET    | `/finishes/:id`           | `finishes#show`      |
+| PATCH  | `/finishes/:id`           | `finishes#update`    |
+| DELETE  | `/finishes/:id`           | `finishes#destroy`    |
+
+Client installation instructions:
+1. fork and clone the client repo
+2. cd into the repo directory and `npm install` to install dependencies
+3. run `npm start` to start a local server
+4. to deploy to prod, follow these steps:  https://github.com/gitname/react-gh-pages
+
+API installation instructions:
+1. fork and clone the api repo
+2. cd into the repo directory and `bundle install` to install dependencies
+3. set secret keys
+3. run:
+4. `bin/rails db:drop`
+5. `bin/rails db:migrate`
+6. `bin/rails server` to start locally
+7. to deploy to prod, create a heroku app from this directory and push master code to heroku
+8. add secret keys to heroku App
+
+
+TODO:
++ implement google maps API
++ implement responsive design for smaller displays
++ Add notice on users Finishes page that they are in the lead!

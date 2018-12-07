@@ -15,6 +15,7 @@ import Rides from './rides/components/Rides'
 import RideDetail from './rides/components/RideDetail'
 import Finishes from './finishes/components/Finishes'
 import FinishDetail from './finishes/components/FinishDetail'
+import About from './rides/components/About'
 
 
 class App extends Component {
@@ -50,6 +51,7 @@ class App extends Component {
         {flashMessage && <h3 className={flashType}>{flashMessage}</h3>}
 
         <main className="container">
+          <Route path='/about' component={About}/>
           <Route path='/sign-up' render={() => (
             <SignUp flash={this.flash} setUser={this.setUser} />
           )} />
