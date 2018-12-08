@@ -75,9 +75,10 @@ class Rides extends React.Component {
 
     return (
       <React.Fragment>
-        <Leaderboard user={user} component={Leaderboard} />
-        <h1>Available Rides <img src="https://image.flaticon.com/icons/svg/130/130066.svg" height="50px"/></h1>
+        {/*<Leaderboard user={user} component={Leaderboard} />*/}
+
         <div className="ride-container">
+          <h1>Available Rides <img src="https://image.flaticon.com/icons/svg/130/130066.svg" height="50px"/></h1>
           {individualRide}
           {this.state.flashMessage}
         </div>
