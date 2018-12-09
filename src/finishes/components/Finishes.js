@@ -25,6 +25,8 @@ class Finishes extends React.Component {
     this.totalPoints = 0
     this.renderRun = 0
 
+    // bind this to changeHandler function below, which helps rerender the stats
+    // when returning to this view
     this.changeHandler = this.changeHandler.bind(this)
 
   }
@@ -32,6 +34,7 @@ class Finishes extends React.Component {
   async componentDidMount() {
     const token = this.props.user.token
 
+    // call to API for finishes
     try {
       const response = await axios.get(`${apiUrl}` + '/finishes', { headers: { Authorization: `Bearer ${token}` } })
       this.setState({finishes: response.data.finishes})
@@ -42,6 +45,8 @@ class Finishes extends React.Component {
 
   }
 
+  // changeHandler is passes as prop to help rerender this component when returning
+  // after adding a finish
   changeHandler() {
     this.componentDidMount()
   }
@@ -52,10 +57,12 @@ class Finishes extends React.Component {
     const  currentUser = this.props.user
     const flash = this.props.flash
 
+    // handle case of no finishes created yet
     if (finishes.length === 0) {
       individualFinish = <Link to="/rides">Add some rides to your finished stats!</Link>
     } else {
 
+      // pull data from each finish
       individualFinish = finishes.map(finish => {
         const { id, notes, date, duration, user } = finish
         const points = finish.ride.points
@@ -73,15 +80,19 @@ class Finishes extends React.Component {
           distance: distance
         }
 
+        // calculate unix time of the date of each finish to get weather data
+        // from darksky API
         const unixTs = Math.round((new Date(date)).getTime() / 1000)
 
 
+        // verify this is the current user's data only (was valid when leaderboard was implemented)
         if (finishUser.id === currentUser.id) {
           this.totalDistance += distance
           this.totalRides += 1
           this.totalTime += duration
           this.totalPoints += points
 
+          // create props to send to detail view
           const detail_link = {
             pathname: `/finishes/${id}`,
             finishParams: {id, name, notes, date, unixTs, duration, ride_id, points, distance, user: this.props.user, flash}
@@ -112,6 +123,7 @@ class Finishes extends React.Component {
       }
     }
 
+    // calculate stats
     return (
       <React.Fragment>
         <div className="stats-aside">

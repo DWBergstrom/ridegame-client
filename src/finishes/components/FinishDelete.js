@@ -10,6 +10,7 @@ class FinishDelete extends React.Component {
   constructor(props) {
     super(props)
 
+    // blank message for error display
     this.state = {
       flashMessage: ''
     }
@@ -21,7 +22,7 @@ class FinishDelete extends React.Component {
     const { flash, user } = this.props
     const finishId = this.props.id
 
-
+    // call API for delete action
     apiDeleteFinish(finishId, user)
       .then(handleErrors)
       .then(() => flash(messages.deleteFinishSuccess, 'flash-success'))
@@ -36,6 +37,7 @@ class FinishDelete extends React.Component {
 
   }
 
+  // button to handle delete with deleteFinish function above
   render() {
     return (
       <div>

@@ -16,6 +16,8 @@ class FinishDetail extends React.Component {
   constructor(props) {
     super(props)
 
+    // add blank variables for weather data
+    // detail value helps this component rerender when update/delete are completed
     this.state = {
       detail: true,
       unixTs: '',
@@ -28,6 +30,7 @@ class FinishDetail extends React.Component {
 
   async componentDidMount() {
 
+    // call to darksky for weather data
     try {
       const response = await axios.get(`${proxyUrl}` + 'https://api.darksky.net/forecast/5002c77972384623b3d6ac4853cbabfb/' + '42,-71,' + `${this.props.location.finishParams.unixTs}`)
       this.setState({weather: response.data})
@@ -40,6 +43,7 @@ class FinishDetail extends React.Component {
 
   }
 
+  // create props to send to update and delete views
   render() {
     const detail = this.state.detail
     const { name, notes, date, duration, points, user, id, ride_id, distance, unixTs, flash } = this.props.location.finishParams
@@ -57,7 +61,7 @@ class FinishDetail extends React.Component {
     }
 
 
-
+    // generate view
     return (
       <div className="user-finishes, finishes-detail-div">
         <h1>Details for Finished Ride</h1>

@@ -10,6 +10,8 @@ export const handleErrors = res => {
   }
 }
 
+// auth API actions below
+
 export const signUp = credentials => {
   return fetch(apiUrl + '/sign-up', {
     method: 'POST',

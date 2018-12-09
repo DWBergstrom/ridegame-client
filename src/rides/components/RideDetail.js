@@ -8,7 +8,7 @@ const apiUrl = config.apiUrl
 
 class RideDetail extends React.Component {
 
-
+  // pull in necessary variables from props from rides component
   render () {
     const { id, name, photo_url, description, distance, points, user, flash } = this.props.location.rideParams
     const finishData = {
@@ -20,6 +20,7 @@ class RideDetail extends React.Component {
       duration: '',
       flash
     }
+    // build the view for the detail
     return (
       <div className="ride-div">
         <h2>Ride Detail</h2>

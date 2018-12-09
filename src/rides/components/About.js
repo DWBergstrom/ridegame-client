@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './Rides.scss'
 
+// site description
 class About extends React.Component {
 
   render () {

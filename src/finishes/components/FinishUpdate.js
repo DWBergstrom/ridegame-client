@@ -11,6 +11,9 @@ class FinishUpdate extends React.Component {
   constructor(props) {
     super(props)
 
+    // use state to populate placeholders
+    // dateClicked helps build a CSS workaround for prepopulating the date
+    // in the update view
     this.state = {
       date: '',
       notes: '',
@@ -19,10 +22,12 @@ class FinishUpdate extends React.Component {
     }
   }
 
+  // pulls in data from forms for the update API call
   handleChange = event => this.setState({
     [event.target.name]: event.target.value
   })
 
+  // when clicked, removes the CSS placeholder so date can change
   handleClick = event => {
     this.setState({
       dateClicked: true
@@ -32,6 +37,7 @@ class FinishUpdate extends React.Component {
   updateFinish = event => {
     event.preventDefault()
 
+    // create data object for API call
     const { flash, user } = this.props
     const finishData = {
       user_id: this.props.user.id,
@@ -43,6 +49,7 @@ class FinishUpdate extends React.Component {
 
     const finishId = this.props.id
 
+    // call API to update the finish
     apiUpdateFinish(finishData, finishId, user)
       .then(handleErrors)
       .then(() => flash(messages.updateFinishSuccess, 'flash-success'))
@@ -60,6 +67,7 @@ class FinishUpdate extends React.Component {
 
   render () {
     const { notes, duration, date } = this.state
+    // remove placeholder data if date field is clicked
     const dateState = this.state.dateClicked ? '' : 'date-placeholder'
 
     return (

@@ -11,6 +11,8 @@ export const handleErrors = res => {
   }
 }
 
+// api calls for finish actions below
+
 export const apiCreateFinish = (finish, user) => {
   return fetch(apiUrl + '/finishes', {
     method: 'POST',
