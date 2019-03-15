@@ -85,7 +85,7 @@ class Rides extends React.Component {
     // leaderboard is disabled for now while re-thinking how to safely get user data from API
     return (
       <React.Fragment>
-        {/*<Leaderboard user={user} component={Leaderboard} />*/}
+        <Leaderboard user={user} component={Leaderboard} />
 
         <div className="">
           <h1>Available Rides <img src="https://image.flaticon.com/icons/svg/130/130066.svg" height="50px"/></h1>

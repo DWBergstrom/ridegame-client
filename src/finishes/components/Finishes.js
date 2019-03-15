@@ -48,6 +48,7 @@ class Finishes extends React.Component {
   // changeHandler is passes as prop to help rerender this component when returning
   // after adding a finish
   changeHandler() {
+    console.log('changeHandler run')
     this.componentDidMount()
   }
 

@@ -56,6 +56,7 @@ class FinishUpdate extends React.Component {
       .then(() => {
         this.setState({ dateClicked: false })
         if (this.props.detail === true) {
+          console.log('this.props in FinishUpdate is ', this.props)
           this.props.history.push('/finishes')
         } else {
           this.props.changeHandler()
